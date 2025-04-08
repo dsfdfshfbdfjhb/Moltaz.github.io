@@ -68,22 +68,6 @@
           document.getElementById("download-btn").style.display = "inline-block";
         }, 12000);
       };
-
-      // Function to trigger the image download using Blob
-      function downloadImage() {
-        const imageUrl = 'https://github.com/dsfdfshfbdfjhb/dsfdfshfbdfjhb.github.io/raw/main/646349f1e09531a27f70a172_79.png';
-        fetch(imageUrl)
-          .then(response => response.blob())
-          .then(blob => {
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.href = url;
-            link.download = 'april-fools.png';
-            link.click();
-            URL.revokeObjectURL(url);
-          })
-          .catch(error => console.error('Error downloading the image:', error));
-      }
     </script>
   </head>
   <body>
@@ -91,6 +75,8 @@
     <p>Wait for it...</p>
     <img id="image" src="https://github.com/dsfdfshfbdfjhb/dsfdfshfbdfjhb.github.io/blob/main/646349f1e09531a27f70a172_79.png?raw=true" alt="April Fools Image">
     <br>
-    <button id="download-btn" onclick="downloadImage()">Download April Fools Image</button>
+    <a id="download-btn" href="https://github.com/dsfdfshfbdfjhb/dsfdfshfbdfjhb.github.io/raw/main/646349f1e09531a27f70a172_79.png" download="april-fools.png">
+      <button>Download April Fools Image</button>
+    </a>
   </body>
 </html>
