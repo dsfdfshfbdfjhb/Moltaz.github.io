@@ -8,13 +8,11 @@
 
     <style>
       body {
-        background-color: #fff;
+        background-color: white;
         color: cyan;
         text-align: center;
-        padding-top: 100px;
         font-family: Arial, sans-serif;
-        margin: 0;
-        height: 100vh;
+        padding-top: 50px;
       }
 
       h1 {
@@ -22,214 +20,169 @@
         margin-bottom: 20px;
       }
 
-      p {
-        font-size: 1.2em;
-      }
-
-      #troll-btn {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 20px 40px;
-        background-color: #00bfff;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 1.2em;
-        cursor: pointer;
-      }
-
-      #troll-btn:hover {
-        background-color: #1e90ff;
-      }
-
-      /* More button in the bottom-right corner */
-      #more-btn, #back-btn {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        padding: 10px 20px;
-        background-color: black;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-
-      #more-btn:hover, #back-btn:hover {
-        background-color: #555;
-      }
-
-      /* Initially hiding the song buttons and progress bar */
-      .song-buttons, .progress-container {
-        display: none;
-      }
-
       button {
         padding: 10px 20px;
         font-size: 1em;
-        background-color: #00bfff;
+        background-color: cyan;
         color: white;
         border: none;
         border-radius: 8px;
         cursor: pointer;
+        width: 250px;
+        margin-top: 20px;
       }
 
       button:hover {
-        background-color: #1e90ff;
+        background-color: #00b3b3;
       }
 
-      /* Container for song buttons and progress bars, side by side */
-      .song-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 50px;  /* Adjust space between buttons */
-        flex-wrap: wrap; /* Allow wrapping on small screens */
-      }
-
-      /* Progress bars are now set to the same width as buttons */
-      .progress-container {
-        width: 200px;  /* Same width as the song buttons */
-        height: 20px;
+      .bar {
+        width: 250px;
+        height: 10px;
         background-color: #ddd;
-        margin-top: 10px;
-        border-radius: 10px;
+        margin: 10px auto;
       }
 
-      .progress-bar {
+      .progress {
         height: 100%;
-        width: 0%;
-        background-color: #00bfff;
-        border-radius: 10px;
+        background-color: cyan;
+        width: 0;
+      }
+
+      .song-container {
+        margin-top: 20px;
       }
     </style>
+
     <script>
-      let audioBorderline = new Audio('https://ia801008.us.archive.org/7/items/TameImpalaBorderline/Tame%20Impala%20-%20Borderline.mp3');
-      let audioElectricFeel = new Audio('https://ia804605.us.archive.org/3/items/noorfarida1982_gmail_AAT7/MGMT%20-%20Electric%20Feel.mp3');
-      let isBorderlinePlaying = false;
-      let isElectricFeelPlaying = false;
+      let song1 = new Audio("https://ia801008.us.archive.org/7/items/TameImpalaBorderline/Tame%20Impala%20-%20Borderline.mp3");
+      let song2 = new Audio("https://ia804605.us.archive.org/3/items/noorfarida1982_gmail_AAT7/MGMT%20-%20Electric%20Feel.mp3");
+      let song3 = new Audio("https://ia801207.us.archive.org/12/items/1448336496904644272392/07%20the%20less%20i%20know%20the%20better.mp3");
+      let song4 = new Audio("https://ia902901.us.archive.org/6/items/FeelsLikeWeOnlyGoBackwards/FeelsLikeWeOnlyGoBackwards-TameImpala.mp3");
+      let song5 = new Audio("https://dn721806.ca.archive.org/0/items/alt-j-breezeblocks-lyrics-hq/Alt-J%20%28%E2%88%86%29%20_%20Breezeblocks%20Lyrics%20%28HQ%29.mp3");
 
-      // Function to toggle play/pause for Borderline
-      function toggleBorderline() {
-        if (isBorderlinePlaying) {
-          audioBorderline.pause();
+      let isPlayingSong1 = false;
+      let isPlayingSong2 = false;
+      let isPlayingSong3 = false;
+      let isPlayingSong4 = false;
+      let isPlayingSong5 = false;
+
+      function togglePlayPause(song, button, progressBar, isPlaying) {
+        if (isPlaying) {
+          song.pause();
+          button.innerHTML = "Play Song";
+          progressBar.style.width = '0%';
         } else {
-          audioBorderline.play();
+          song.play();
+          button.innerHTML = "Pause Song";
+          updateProgress(song, progressBar);
         }
-        isBorderlinePlaying = !isBorderlinePlaying;
+        return !isPlaying;
       }
 
-      // Function to toggle play/pause for Electric Feel
-      function toggleElectricFeel() {
-        if (isElectricFeelPlaying) {
-          audioElectricFeel.pause();
+      function updateProgress(song, progressBar) {
+        song.ontimeupdate = function () {
+          let progress = (song.currentTime / song.duration) * 100;
+          progressBar.style.width = progress + '%';
+        };
+      }
+
+      window.onload = function () {
+        // Initial setup for Song 1: Borderline
+        document.getElementById("playBtn1").onclick = function () {
+          isPlayingSong1 = togglePlayPause(song1, this, document.getElementById("progressBar1"), isPlayingSong1);
+        };
+
+        // Initial setup for Song 2: Electric Feel
+        document.getElementById("playBtn2").onclick = function () {
+          isPlayingSong2 = togglePlayPause(song2, this, document.getElementById("progressBar2"), isPlayingSong2);
+        };
+
+        // Initial setup for Song 3: The Less I Know The Better
+        document.getElementById("playBtn3").onclick = function () {
+          isPlayingSong3 = togglePlayPause(song3, this, document.getElementById("progressBar3"), isPlayingSong3);
+        };
+
+        // Initial setup for Song 4: Feels Like We Only Go Backwards
+        document.getElementById("playBtn4").onclick = function () {
+          isPlayingSong4 = togglePlayPause(song4, this, document.getElementById("progressBar4"), isPlayingSong4);
+        };
+
+        // Initial setup for Song 5: Breezeblocks
+        document.getElementById("playBtn5").onclick = function () {
+          isPlayingSong5 = togglePlayPause(song5, this, document.getElementById("progressBar5"), isPlayingSong5);
+        };
+      };
+
+      // Show/hide the troll and more sections
+      function toggleSection() {
+        let trollSection = document.getElementById("troll");
+        let moreSection = document.getElementById("more");
+
+        if (moreSection.style.display === "none") {
+          moreSection.style.display = "block";
+          trollSection.style.display = "none";
         } else {
-          audioElectricFeel.play();
-        }
-        isElectricFeelPlaying = !isElectricFeelPlaying;
-      }
-
-      // Update progress bars based on the current time of the songs
-      function updateProgressBars() {
-        const progressBarBorderline = document.getElementById('progress-bar-borderline');
-        const progressBarElectricFeel = document.getElementById('progress-bar-electric-feel');
-
-        const progressBorderline = (audioBorderline.currentTime / audioBorderline.duration) * 100;
-        const progressElectricFeel = (audioElectricFeel.currentTime / audioElectricFeel.duration) * 100;
-
-        progressBarBorderline.style.width = progressBorderline + '%';
-        progressBarElectricFeel.style.width = progressElectricFeel + '%';
-      }
-
-      // Function to hide elements and show song buttons and progress bar
-      function showMore() {
-        const songButtons = document.querySelector(".song-buttons");
-        const progressBarContainer = document.querySelectorAll(".progress-container");
-        const moreBtn = document.getElementById("more-btn");
-        const titleText = document.getElementById("title-text");
-        const trollBtn = document.getElementById("troll-btn");
-
-        if (songButtons.style.display === "none" || songButtons.style.display === "") {
-          // Show song buttons and progress bars, hide troll button
-          songButtons.style.display = "block";
-          progressBarContainer.forEach((bar) => {
-            bar.style.display = "block";
-          });
-          trollBtn.style.display = "none";
-          moreBtn.innerText = "Back";  // Change "More" to "Back"
-          titleText.innerText = "Music";  // Change title to "Music"
-        } else {
-          // Hide song buttons and progress bars, show troll button only
-          songButtons.style.display = "none";
-          progressBarContainer.forEach((bar) => {
-            bar.style.display = "none";
-          });
-          trollBtn.style.display = "inline-block";
-          moreBtn.innerText = "More";  // Change "Back" to "More"
-          titleText.innerText = "Welcome to My Website";  // Reset title back
-        }
-      }
-
-      // Function for the troll button to open tabs and trigger downloads
-      function trollButtonAction() {
-        // Open multiple new tabs
-        for (let i = 0; i < 3; i++) {
-          window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>You got pranked!</p>");
-        }
-
-        // Trigger multiple downloads
-        const textContent = `🎉 April Fools! You got pranked! 😜
-        Here's a secret message just for you:
-        "Keep smiling and have a fun day!"
-        🥳`;
-        for (let i = 0; i < 3; i++) {
-          const blob = new Blob([textContent], { type: 'text/plain' });
-          const link = document.createElement('a');
-          link.href = URL.createObjectURL(blob);
-          link.download = "april_fools_message.txt"; // Download file name
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
+          moreSection.style.display = "none";
+          trollSection.style.display = "block";
         }
       }
     </script>
   </head>
   <body>
-    <h1 id="title-text">Welcome to My Website</h1>
+    <h1>Welcome to My Website</h1>
 
-    <!-- TROLL Button (centered) -->
-    <button id="troll-btn" onclick="trollButtonAction()">Troll!</button>
-
-    <!-- MORE Button (bottom-right corner) -->
-    <button id="more-btn" onclick="showMore()">More</button>
-
-    <!-- BACK Button (bottom-right corner, hidden initially) -->
-    <button id="back-btn" onclick="showMore()" style="display:none;">Back</button>
-
-    <!-- Song Buttons and Progress Bars (hidden initially) -->
-    <div class="song-buttons">
-      <div class="song-container">
-        <div>
-          <button onclick="toggleBorderline()">Play/Pause Borderline</button>
-          <div class="progress-container">
-            <div id="progress-bar-borderline" class="progress-bar"></div>
-          </div>
-        </div>
-
-        <div>
-          <button onclick="toggleElectricFeel()">Play/Pause Electric Feel</button>
-          <div class="progress-container">
-            <div id="progress-bar-electric-feel" class="progress-bar"></div>
-          </div>
-        </div>
-      </div>
+    <!-- Troll Section -->
+    <div id="troll">
+      <button onclick="alert('April Fools! 🎉')">Troll Button</button>
+      <button id="moreBtn" onclick="toggleSection()">More</button>
     </div>
 
-    <!-- Update progress bars every second -->
-    <script>
-      setInterval(updateProgressBars, 1000);
-    </script>
+    <!-- More Section (Hidden by default) -->
+    <div id="more" style="display:none;">
+      <h2>Music 🎶</h2>
+
+      <!-- Song 1: Borderline -->
+      <div class="song-container">
+        <button id="playBtn1">Play Song 1: Borderline</button>
+        <div class="bar">
+          <div id="progressBar1" class="progress"></div>
+        </div>
+      </div>
+
+      <!-- Song 2: Electric Feel -->
+      <div class="song-container">
+        <button id="playBtn2">Play Song 2: Electric Feel</button>
+        <div class="bar">
+          <div id="progressBar2" class="progress"></div>
+        </div>
+      </div>
+
+      <!-- Song 3: The Less I Know The Better -->
+      <div class="song-container">
+        <button id="playBtn3">Play Song 3: The Less I Know The Better</button>
+        <div class="bar">
+          <div id="progressBar3" class="progress"></div>
+        </div>
+      </div>
+
+      <!-- Song 4: Feels Like We Only Go Backwards -->
+      <div class="song-container">
+        <button id="playBtn4">Play Song 4: Feels Like We Only Go Backwards</button>
+        <div class="bar">
+          <div id="progressBar4" class="progress"></div>
+        </div>
+      </div>
+
+      <!-- Song 5: Breezeblocks -->
+      <div class="song-container">
+        <button id="playBtn5">Play Song 5: Breezeblocks</button>
+        <div class="bar">
+          <div id="progressBar5" class="progress"></div>
+        </div>
+      </div>
+
+      <button onclick="toggleSection()">Back</button>
+    </div>
   </body>
 </html>
