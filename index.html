@@ -204,15 +204,14 @@
     <!-- Song Buttons (hidden initially) -->
     <div class="song-buttons">
       <button onclick="toggleBorderline()">Play/Pause Borderline</button>
-      <button onclick="toggleElectricFeel()">Play/Pause Electric Feel</button>
-    </div>
+      <div class="progress-container">
+        <div id="progress-bar-borderline" class="progress-bar"></div>
+      </div>
 
-    <!-- Progress Bars for Borderline and Electric Feel -->
-    <div class="progress-container">
-      <div id="progress-bar-borderline" class="progress-bar"></div>
-    </div>
-    <div class="progress-container">
-      <div id="progress-bar-electric-feel" class="progress-bar"></div>
+      <button onclick="toggleElectricFeel()">Play/Pause Electric Feel</button>
+      <div class="progress-container">
+        <div id="progress-bar-electric-feel" class="progress-bar"></div>
+      </div>
     </div>
 
     <!-- Update progress bars every second -->
