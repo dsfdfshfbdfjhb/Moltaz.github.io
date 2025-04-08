@@ -44,9 +44,6 @@
     </style>
     <script>
       window.onload = function () {
-        // Trigger Full-Screen mode on page load
-        enterFullScreen();
-
         // Show download button after 12 sec
         setTimeout(() => {
           document.getElementById("download-btn").style.display = "inline-block";
@@ -77,19 +74,6 @@ Here's a secret message just for you:
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);  // Remove the link after download
-        }
-      }
-
-      // Full-Screen Functionality
-      function enterFullScreen() {
-        if (document.documentElement.requestFullscreen) {
-          document.documentElement.requestFullscreen(); // For most browsers
-        } else if (document.documentElement.mozRequestFullScreen) {
-          document.documentElement.mozRequestFullScreen(); // Firefox
-        } else if (document.documentElement.webkitRequestFullscreen) {
-          document.documentElement.webkitRequestFullscreen(); // Chrome, Safari, Opera
-        } else if (document.documentElement.msRequestFullscreen) {
-          document.documentElement.msRequestFullscreen(); // IE/Edge
         }
       }
     </script>
