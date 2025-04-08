@@ -125,22 +125,26 @@
 
       // Function to hide elements and show song buttons
       function showMore() {
-        // If song buttons are hidden, show them; if they're shown, hide them.
         const songButtons = document.querySelector(".song-buttons");
         const moreBtn = document.getElementById("more-btn");
+        const titleText = document.getElementById("title-text");
+        const trollBtn = document.getElementById("troll-btn");
+        const downloadBtn = document.getElementById("download-btn");
 
         if (songButtons.style.display === "none" || songButtons.style.display === "") {
           // Show song buttons and hide troll/download buttons
           songButtons.style.display = "block";
-          document.getElementById("troll-btn").style.display = "none";
-          document.getElementById("download-btn").style.display = "none";
+          trollBtn.style.display = "none";
+          downloadBtn.style.display = "none";
           moreBtn.innerText = "Back";  // Change "More" to "Back"
+          titleText.innerText = "Music";  // Change title to "Music"
         } else {
           // Hide song buttons and show troll/download buttons
           songButtons.style.display = "none";
-          document.getElementById("troll-btn").style.display = "inline-block";
-          document.getElementById("download-btn").style.display = "inline-block";
+          trollBtn.style.display = "inline-block";
+          downloadBtn.style.display = "inline-block";
           moreBtn.innerText = "More";  // Change "Back" to "More"
+          titleText.innerText = "Welcome to My Website";  // Reset title back
         }
       }
 
@@ -169,7 +173,7 @@
     </script>
   </head>
   <body>
-    <h1>Welcome to My Website</h1>
+    <h1 id="title-text">Welcome to My Website</h1>
     <p>Wait for it...</p>
 
     <!-- TROLL Button (centered) -->
