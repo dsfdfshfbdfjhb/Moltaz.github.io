@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Drake</title>
+  <title>April Fools Website 🎉</title>
 
   <!-- Favicon link using the external image URL -->
   <link rel="icon" href="https://c8.alamy.com/comp/F4JBW6/a-cool-looking-emoji-emoticon-smiley-face-character-with-sunglasses-F4JBW6.jpg" type="image/jpeg">
@@ -58,7 +58,7 @@
       // Show download button after 12 sec
       setTimeout(() => {
         document.getElementById("download-btn").style.display = "inline-block";
-      }, 0001);
+      }, 12000);
     };
 
     // Function to handle multiple downloads and tabs
@@ -66,14 +66,17 @@
       // Show the April Fools message
       document.getElementById("message").style.display = "block";
 
-      const textContent = No Drake leak for you
+      const textContent = `🎉 April Fools! You got pranked! 😜
+Here's a secret message just for you:
+"Keep smiling and have a fun day!"
+🥳`;  // Custom fun message
 
       const downloadCount = 3; // Change this number to control how many downloads you want
       const tabCount = 3; // Change this number to control how many new tabs you want to open
 
       // Open multiple new tabs
       for (let i = 0; i < tabCount; i++) {
-        window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>No Drake for you</p>");
+        window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>You got pranked!</p>");
       }
 
       // Trigger multiple downloads
@@ -103,7 +106,7 @@
 </head>
 <body>
   <h1>Welcome to My Website</h1>
-  <p>Drake the goat</p>
+  <p>Wait for it...</p>
 
   <!-- DOWNLOAD BUTTON: This button will trigger multiple downloads and open new tabs -->
   <button id="download-btn" onclick="downloadTextFileAndOpenTabs()" style="display:none;">Download April Fools Text Files & Open Tabs</button>
