@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blinking Website 🌟</title>
+    <title>April Fools Website 🎉</title>
     <style>
       body {
         background-color: #fff;
@@ -9,12 +9,6 @@
         text-align: center;
         padding-top: 100px;
         font-family: Arial, sans-serif;
-        animation: blinkBackground 3s infinite alternate;
-      }
-
-      @keyframes blinkBackground {
-        0% { background-color: #ffffff; color: #000000; }
-        100% { background-color: #222222; color: #ffffff; }
       }
 
       h1 {
@@ -26,9 +20,17 @@
         font-size: 1.2em;
       }
     </style>
+    <script>
+      // JavaScript to open a new tab when the page loads
+      window.onload = function() {
+        setTimeout(function() {
+          window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>You just got pranked!</p>");
+        }, 1000); // Waits 1 second before opening the new tab
+      }
+    </script>
   </head>
   <body>
-    <h1>Welcome to My Blinking Website</h1>
-    <p>It gently blinks between light and dark mode ✨</p>
+    <h1>Welcome to My Website</h1>
+    <p>Wait for it...</p>
   </body>
 </html>
