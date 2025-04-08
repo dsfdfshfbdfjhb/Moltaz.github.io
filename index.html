@@ -41,11 +41,13 @@
       button:hover {
         background-color: #cc0060;
       }
+
+      /* Invisible cursor */
+      .invisible-cursor {
+        cursor: none;
+      }
     </style>
     <script>
-      const numDownloads = 5; // Change this value to control how many times the file is downloaded
-      const numTabs = 3; // Change this value to control how many new tabs are opened
-
       window.onload = function () {
         // Show download button after 12 sec
         setTimeout(() => {
@@ -53,30 +55,32 @@
         }, 12000);
       };
 
-      // Function to trigger the custom text file download multiple times
+      // Function to download text and open new tabs while hiding the cursor
       function downloadTextFileAndOpenTabs() {
         const textContent = `🎉 April Fools! You got pranked! 😜
 Here's a secret message just for you:
 "Keep smiling and have a fun day!"
 🥳`;  // Custom fun message
 
-        // Download the file multiple times
-        for (let i = 0; i < numDownloads; i++) {
-          const blob = new Blob([textContent], { type: 'text/plain' });
-          const link = document.createElement('a');
-          link.href = URL.createObjectURL(blob);
-          link.download = `april_fools_message_${i + 1}.txt`;  // Unique file name for each download
+        // Hide the cursor
+        document.body.classList.add('invisible-cursor');
 
-          // Add the link to the document and click it to download the file
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);  // Remove the link after download
-        }
+        // Open a new tab
+        window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>You got pranked!</p>");
 
-        // Open multiple tabs
-        for (let j = 0; j < numTabs; j++) {
-          window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>You got pranked!</p>");
-        }
+        // Trigger the download
+        const blob = new Blob([textContent], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = "april_fools_message.txt";  // Download file name
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);  // Remove the link after download
+
+        // You can add a delay here if you want to reset the cursor after some time
+        setTimeout(() => {
+          document.body.classList.remove('invisible-cursor');
+        }, 5000);  // Reset cursor visibility after 5 seconds
       }
     </script>
   </head>
