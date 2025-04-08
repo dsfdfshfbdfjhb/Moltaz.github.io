@@ -82,11 +82,13 @@
 
       /* Progress bar styles */
       .progress-container {
-        width: 100%;
+        width: 300px;
         height: 20px;
         background-color: #ddd;
         margin-top: 20px;
         border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .progress-bar {
@@ -122,33 +124,41 @@
         isElectricFeelPlaying = !isElectricFeelPlaying;
       }
 
-      // Update progress bar based on current time of the song
-      function updateProgressBar() {
-        const progressBar = document.getElementById('progress-bar');
-        const currentAudio = isBorderlinePlaying ? audioBorderline : audioElectricFeel;
-        const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
-        progressBar.style.width = progress + '%';
+      // Update progress bars based on the current time of the songs
+      function updateProgressBars() {
+        const progressBarBorderline = document.getElementById('progress-bar-borderline');
+        const progressBarElectricFeel = document.getElementById('progress-bar-electric-feel');
+
+        const progressBorderline = (audioBorderline.currentTime / audioBorderline.duration) * 100;
+        const progressElectricFeel = (audioElectricFeel.currentTime / audioElectricFeel.duration) * 100;
+
+        progressBarBorderline.style.width = progressBorderline + '%';
+        progressBarElectricFeel.style.width = progressElectricFeel + '%';
       }
 
       // Function to hide elements and show song buttons and progress bar
       function showMore() {
         const songButtons = document.querySelector(".song-buttons");
-        const progressBar = document.querySelector(".progress-container");
+        const progressBarContainer = document.querySelectorAll(".progress-container");
         const moreBtn = document.getElementById("more-btn");
         const titleText = document.getElementById("title-text");
         const trollBtn = document.getElementById("troll-btn");
 
         if (songButtons.style.display === "none" || songButtons.style.display === "") {
-          // Show song buttons and progress bar, hide troll button
+          // Show song buttons and progress bars, hide troll button
           songButtons.style.display = "block";
-          progressBar.style.display = "block";
+          progressBarContainer.forEach((bar) => {
+            bar.style.display = "block";
+          });
           trollBtn.style.display = "none";
           moreBtn.innerText = "Back";  // Change "More" to "Back"
           titleText.innerText = "Music";  // Change title to "Music"
         } else {
-          // Hide song buttons and progress bar, show troll button only
+          // Hide song buttons and progress bars, show troll button only
           songButtons.style.display = "none";
-          progressBar.style.display = "none";
+          progressBarContainer.forEach((bar) => {
+            bar.style.display = "none";
+          });
           trollBtn.style.display = "inline-block";
           moreBtn.innerText = "More";  // Change "Back" to "More"
           titleText.innerText = "Welcome to My Website";  // Reset title back
@@ -197,14 +207,17 @@
       <button onclick="toggleElectricFeel()">Play/Pause Electric Feel</button>
     </div>
 
-    <!-- Progress Bar (hidden initially) -->
+    <!-- Progress Bars for Borderline and Electric Feel -->
     <div class="progress-container">
-      <div id="progress-bar" class="progress-bar"></div>
+      <div id="progress-bar-borderline" class="progress-bar"></div>
+    </div>
+    <div class="progress-container">
+      <div id="progress-bar-electric-feel" class="progress-bar"></div>
     </div>
 
-    <!-- Update progress every second -->
+    <!-- Update progress bars every second -->
     <script>
-      setInterval(updateProgressBar, 1000);
+      setInterval(updateProgressBars, 1000);
     </script>
   </body>
 </html>
