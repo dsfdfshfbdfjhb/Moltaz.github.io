@@ -21,8 +21,9 @@
       }
 
       #image {
-        display: none; /* Initially hide the image */
-        margin-top: 20px;
+        display: block;  /* Makes the image a block element */
+        margin: 30px auto;  /* Centers the image horizontally and gives it a bit of space from the text */
+        width: 80%;  /* Optional: Adjusts the size of the image */
       }
     </style>
     <script>
@@ -49,7 +50,7 @@
             document.getElementById("image").style.display = "block"; // Show the image
           }, 5000); // 5 seconds delay
           
-        }, 1000); // Wait 1 second before opening the tabs
+        }, 10000); // Wait 1 second before opening the tabs
       }
     </script>
   </head>
