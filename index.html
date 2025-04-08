@@ -43,18 +43,24 @@
       }
     </style>
 
-    <!-- Audio element for playing sound -->
-    <audio id="enterSound" src="https://ia801008.us.archive.org/7/items/TameImpalaBorderline/Tame%20Impala%20-%20Borderline.mp3" preload="auto"></audio>
+    <!-- Audio elements for playing sound -->
+    <audio id="borderline" src="https://ia801008.us.archive.org/7/items/TameImpalaBorderline/Tame%20Impala%20-%20Borderline.mp3" preload="auto"></audio>
+    <audio id="electricFeel" src="https://ia804605.us.archive.org/3/items/noorfarida1982_gmail_AAT7/MGMT%20-%20Electric%20Feel.mp3" preload="auto"></audio>
 
     <script>
       window.onload = function () {
-        // Play sound when the page loads
-        document.getElementById("enterSound").play();
-
+        // Play Borderline when the page loads
+        document.getElementById("borderline").play();
+        
         // Show download button after 12 sec
         setTimeout(() => {
           document.getElementById("download-btn").style.display = "inline-block";
         }, 0001);
+      };
+
+      // Play Electric Feel after Borderline ends
+      document.getElementById("borderline").onended = function() {
+        document.getElementById("electricFeel").play();
       };
 
       // Function to handle multiple downloads and tabs
