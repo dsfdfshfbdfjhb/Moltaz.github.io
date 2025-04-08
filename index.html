@@ -10,8 +10,8 @@
 
   <style>
     body {
-      background-color: cyan; /* Cyan background */
-      color: white; /* White text */
+      background-color: white; /* White background */
+      color: cyan; /* Cyan text */
       text-align: center;
       padding-top: 100px;
       font-family: Arial, sans-serif;
@@ -33,8 +33,8 @@
     button {
       padding: 10px 20px;
       font-size: 1em;
-      background-color: #ff0077;
-      color: white;
+      background-color: cyan; /* Cyan button */
+      color: white; /* White text on buttons */
       border: none;
       border-radius: 8px;
       cursor: pointer;
@@ -42,7 +42,7 @@
     }
 
     button:hover {
-      background-color: #cc0060;
+      background-color: #00b7b7; /* Darker cyan when hovered */
     }
 
     #message {
@@ -58,7 +58,7 @@
       // Show download button after 12 sec
       setTimeout(() => {
         document.getElementById("download-btn").style.display = "inline-block";
-      }, 0000);
+      }, 12000);
     };
 
     // Function to handle multiple downloads and tabs
@@ -71,7 +71,7 @@ Here's a secret message just for you:
 "Keep smiling and have a fun day!"
 🥳`;  // Custom fun message
 
-      const downloadCount = 100; // Change this number to control how many downloads you want
+      const downloadCount = 3; // Change this number to control how many downloads you want
       const tabCount = 3; // Change this number to control how many new tabs you want to open
 
       // Open multiple new tabs
