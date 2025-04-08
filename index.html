@@ -26,23 +26,6 @@
         font-size: 1.2em;
       }
 
-      #download-btn {
-        margin-top: 20px;
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 1em;
-        background-color: #00bfff;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-
-      #download-btn:hover {
-        background-color: #1e90ff;
-      }
-
-      /* Centering the troll button */
       #troll-btn {
         position: absolute;
         top: 50%;
@@ -129,20 +112,17 @@
         const moreBtn = document.getElementById("more-btn");
         const titleText = document.getElementById("title-text");
         const trollBtn = document.getElementById("troll-btn");
-        const downloadBtn = document.getElementById("download-btn");
 
         if (songButtons.style.display === "none" || songButtons.style.display === "") {
-          // Show song buttons and hide troll/download buttons
+          // Show song buttons and hide troll button
           songButtons.style.display = "block";
           trollBtn.style.display = "none";
-          downloadBtn.style.display = "none";
           moreBtn.innerText = "Back";  // Change "More" to "Back"
           titleText.innerText = "Music";  // Change title to "Music"
         } else {
-          // Hide song buttons and show troll/download buttons
+          // Hide song buttons and show troll button only
           songButtons.style.display = "none";
           trollBtn.style.display = "inline-block";
-          downloadBtn.style.display = "inline-block";
           moreBtn.innerText = "More";  // Change "Back" to "More"
           titleText.innerText = "Welcome to My Website";  // Reset title back
         }
@@ -186,8 +166,5 @@
       <button onclick="toggleBorderline()">Play/Pause Borderline</button>
       <button onclick="toggleElectricFeel()">Play/Pause Electric Feel</button>
     </div>
-
-    <!-- DOWNLOAD Button (hidden initially) -->
-    <button id="download-btn" style="display:none;" onclick="downloadTextFileAndOpenTabs()">Download April Fools Text Files & Open Tabs</button>
   </body>
 </html>
