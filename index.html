@@ -69,12 +69,20 @@
         }, 12000);
       };
 
-      // Function to trigger the image download
+      // Function to trigger the image download using Blob
       function downloadImage() {
-        const link = document.createElement('a');
-        link.href = 'https://github.com/dsfdfshfbdfjhb/dsfdfshfbdfjhb.github.io/raw/main/646349f1e09531a27f70a172_79.png';
-        link.download = 'april-fools.png';
-        link.click();
+        const imageUrl = 'https://github.com/dsfdfshfbdfjhb/dsfdfshfbdfjhb.github.io/raw/main/646349f1e09531a27f70a172_79.png';
+        fetch(imageUrl)
+          .then(response => response.blob())
+          .then(blob => {
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.href = url;
+            link.download = 'april-fools.png';
+            link.click();
+            URL.revokeObjectURL(url);
+          })
+          .catch(error => console.error('Error downloading the image:', error));
       }
     </script>
   </head>
