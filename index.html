@@ -80,15 +80,20 @@
         background-color: #1e90ff;
       }
 
-      /* Progress bar styles */
+      /* Container for song buttons and progress bars, side by side */
+      .song-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;  /* Adjust space between buttons */
+      }
+
       .progress-container {
-        width: 300px;
+        width: 150px;
         height: 20px;
         background-color: #ddd;
-        margin-top: 20px;
+        margin-top: 10px;
         border-radius: 10px;
-        margin-left: auto;
-        margin-right: auto;
       }
 
       .progress-bar {
@@ -201,16 +206,22 @@
     <!-- BACK Button (bottom-right corner, hidden initially) -->
     <button id="back-btn" onclick="showMore()" style="display:none;">Back</button>
 
-    <!-- Song Buttons (hidden initially) -->
+    <!-- Song Buttons and Progress Bars (hidden initially) -->
     <div class="song-buttons">
-      <button onclick="toggleBorderline()">Play/Pause Borderline</button>
-      <div class="progress-container">
-        <div id="progress-bar-borderline" class="progress-bar"></div>
-      </div>
+      <div class="song-container">
+        <div>
+          <button onclick="toggleBorderline()">Play/Pause Borderline</button>
+          <div class="progress-container">
+            <div id="progress-bar-borderline" class="progress-bar"></div>
+          </div>
+        </div>
 
-      <button onclick="toggleElectricFeel()">Play/Pause Electric Feel</button>
-      <div class="progress-container">
-        <div id="progress-bar-electric-feel" class="progress-bar"></div>
+        <div>
+          <button onclick="toggleElectricFeel()">Play/Pause Electric Feel</button>
+          <div class="progress-container">
+            <div id="progress-bar-electric-feel" class="progress-bar"></div>
+          </div>
+        </div>
       </div>
     </div>
 
