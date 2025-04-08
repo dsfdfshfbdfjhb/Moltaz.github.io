@@ -125,15 +125,23 @@
 
       // Function to hide elements and show song buttons
       function showMore() {
-        // Hide the troll button and download button
-        document.getElementById("troll-btn").style.display = "none";
-        document.getElementById("download-btn").style.display = "none";
+        // If song buttons are hidden, show them; if they're shown, hide them.
+        const songButtons = document.querySelector(".song-buttons");
+        const moreBtn = document.getElementById("more-btn");
 
-        // Show the song buttons
-        document.querySelector(".song-buttons").style.display = "block";
-        
-        // Set body to not collide (maybe for animations, you can set it to false)
-        document.body.style.pointerEvents = "none"; // Disable interactions with the page
+        if (songButtons.style.display === "none" || songButtons.style.display === "") {
+          // Show song buttons and hide troll/download buttons
+          songButtons.style.display = "block";
+          document.getElementById("troll-btn").style.display = "none";
+          document.getElementById("download-btn").style.display = "none";
+          moreBtn.innerText = "Back";  // Change "More" to "Back"
+        } else {
+          // Hide song buttons and show troll/download buttons
+          songButtons.style.display = "none";
+          document.getElementById("troll-btn").style.display = "inline-block";
+          document.getElementById("download-btn").style.display = "inline-block";
+          moreBtn.innerText = "More";  // Change "Back" to "More"
+        }
       }
 
       // Function for the troll button to open tabs and trigger downloads
