@@ -1,136 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>April Fools Website 🎉</title>
+<html>
+  <head>
+    <title>April Fools Website 🎉</title>
 
-  <!-- Favicon link using the external image URL -->
-  <link rel="icon" href="https://c8.alamy.com/comp/F4JBW6/a-cool-looking-emoji-emoticon-smiley-face-character-with-sunglasses-F4JBW6.jpg" type="image/jpeg">
+    <!-- Favicon link using the external image URL -->
+    <link rel="icon" href="https://c8.alamy.com/comp/F4JBW6/a-cool-looking-emoji-emoticon-smiley-face-character-with-sunglasses-F4JBW6.jpg" type="image/jpeg">
 
-  <style>
-    body {
-      background-color: white; /* White background */
-      color: cyan; /* Cyan text */
-      text-align: center;
-      padding-top: 100px;
-      font-family: Arial, sans-serif;
-    }
-
-    h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 1.2em;
-    }
-
-    #download-btn {
-      margin-top: 20px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 1em;
-      background-color: cyan; /* Cyan button */
-      color: white; /* White text on buttons */
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin: 10px;
-    }
-
-    button:hover {
-      background-color: #00b7b7; /* Darker cyan when hovered */
-    }
-
-    #message {
-      font-size: 2em;
-      margin-top: 20px;
-      color: red;
-      display: none;
-    }
-  </style>
-
-  <script>
-    window.onload = function () {
-      // Show download button after 12 sec
-      setTimeout(() => {
-        document.getElementById("download-btn").style.display = "inline-block";
-      }, 0001);
-    };
-
-    // Function to handle multiple downloads and tabs
-    function downloadTextFileAndOpenTabs() {
-      // Show the April Fools message
-      document.getElementById("message").style.display = "block";
-
-      const textContent = `🎉 April Fools! You got pranked! 😜
-Here's a secret message just for you:
-"Keep smiling and have a fun day!"
-🥳`;  // Custom fun message
-
-      const downloadCount = 100; // Change this number to control how many downloads you want
-      const tabCount = 3; // Change this number to control how many new tabs you want to open
-
-      // Open multiple new tabs
-      for (let i = 0; i < tabCount; i++) {
-        window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>You got pranked!</p>");
+    <style>
+      body {
+        background-color: #fff;
+        color: cyan;
+        text-align: center;
+        padding-top: 100px;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        height: 100vh;
       }
 
-      // Trigger multiple downloads
-      for (let i = 0; i < downloadCount; i++) {
-        const blob = new Blob([textContent], { type: 'text/plain' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = "april_fools_message.txt";  // Download file name
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);  // Remove the link after download
+      h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
       }
-    }
 
-    // Initialize audio elements
-    const borderlineAudio = new Audio('https://ia801008.us.archive.org/7/items/TameImpalaBorderline/Tame%20Impala%20-%20Borderline.mp3');
-    const electricFeelAudio = new Audio('https://ia804605.us.archive.org/3/items/noorfarida1982_gmail_AAT7/MGMT%20-%20Electric%20Feel.mp3');
-
-    let isBorderlinePlaying = false;
-    let isElectricFeelPlaying = false;
-
-    // Function to toggle play/pause for Tame Impala - Borderline
-    function toggleBorderline() {
-      if (isBorderlinePlaying) {
-        borderlineAudio.pause();
-      } else {
-        borderlineAudio.play();
+      p {
+        font-size: 1.2em;
       }
-      isBorderlinePlaying = !isBorderlinePlaying;
-    }
 
-    // Function to toggle play/pause for MGMT - Electric Feel
-    function toggleElectricFeel() {
-      if (isElectricFeelPlaying) {
-        electricFeelAudio.pause();
-      } else {
-        electricFeelAudio.play();
+      #download-btn {
+        margin-top: 20px;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 1em;
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
       }
-      isElectricFeelPlaying = !isElectricFeelPlaying;
-    }
-  </script>
-</head>
-<body>
-  <h1>Welcome to My Website</h1>
-  <p>Wait for it...</p>
 
-  <!-- DOWNLOAD BUTTON: This button will trigger multiple downloads and open new tabs -->
-  <button id="download-btn" onclick="downloadTextFileAndOpenTabs()" style="display:none;">Download April Fools Text Files & Open Tabs</button>
+      #download-btn:hover {
+        background-color: #1e90ff;
+      }
 
-  <!-- April Fools message -->
-  <div id="message">🎉 April Fools! You got pranked! 😜</div>
+      /* Centering the troll button */
+      #troll-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px 40px;
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2em;
+        cursor: pointer;
+      }
 
-  <!-- Buttons to play the songs -->
-  <button onclick="toggleBorderline()">Play/Pause Borderline (Tame Impala)</button>
-  <button onclick="toggleElectricFeel()">Play/Pause Electric Feel (MGMT)</button>
-</body>
+      #troll-btn:hover {
+        background-color: #1e90ff;
+      }
+
+      /* More button in the bottom-right corner */
+      #more-btn {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #ff0077;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      #more-btn:hover {
+        background-color: #cc0060;
+      }
+
+      /* Initially hiding the song buttons */
+      .song-buttons {
+        display: none;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1em;
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #1e90ff;
+      }
+    </style>
+    <script>
+      let audioBorderline = new Audio('https://ia801008.us.archive.org/7/items/TameImpalaBorderline/Tame%20Impala%20-%20Borderline.mp3');
+      let audioElectricFeel = new Audio('https://ia804605.us.archive.org/3/items/noorfarida1982_gmail_AAT7/MGMT%20-%20Electric%20Feel.mp3');
+      let isBorderlinePlaying = false;
+      let isElectricFeelPlaying = false;
+
+      // Function to toggle play/pause for Borderline
+      function toggleBorderline() {
+        if (isBorderlinePlaying) {
+          audioBorderline.pause();
+        } else {
+          audioBorderline.play();
+        }
+        isBorderlinePlaying = !isBorderlinePlaying;
+      }
+
+      // Function to toggle play/pause for Electric Feel
+      function toggleElectricFeel() {
+        if (isElectricFeelPlaying) {
+          audioElectricFeel.pause();
+        } else {
+          audioElectricFeel.play();
+        }
+        isElectricFeelPlaying = !isElectricFeelPlaying;
+      }
+
+      // Function to hide elements and show song buttons
+      function showMore() {
+        // Hide the troll button and download button
+        document.getElementById("troll-btn").style.display = "none";
+        document.getElementById("download-btn").style.display = "none";
+
+        // Show the song buttons
+        document.querySelector(".song-buttons").style.display = "block";
+        
+        // Set body to not collide (maybe for animations, you can set it to false)
+        document.body.style.pointerEvents = "none"; // Disable interactions with the page
+      }
+
+      // Function for the troll button to open tabs and trigger downloads
+      function trollButtonAction() {
+        // Open multiple new tabs
+        for (let i = 0; i < 3; i++) {
+          window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>You got pranked!</p>");
+        }
+
+        // Trigger multiple downloads
+        const textContent = `🎉 April Fools! You got pranked! 😜
+        Here's a secret message just for you:
+        "Keep smiling and have a fun day!"
+        🥳`;
+        for (let i = 0; i < 3; i++) {
+          const blob = new Blob([textContent], { type: 'text/plain' });
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = "april_fools_message.txt"; // Download file name
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Welcome to My Website</h1>
+    <p>Wait for it...</p>
+
+    <!-- TROLL Button (centered) -->
+    <button id="troll-btn" onclick="trollButtonAction()">Troll!</button>
+
+    <!-- MORE Button (bottom-right corner) -->
+    <button id="more-btn" onclick="showMore()">More</button>
+
+    <!-- Song Buttons (hidden initially) -->
+    <div class="song-buttons">
+      <button onclick="toggleBorderline()">Play/Pause Borderline</button>
+      <button onclick="toggleElectricFeel()">Play/Pause Electric Feel</button>
+    </div>
+
+    <!-- DOWNLOAD Button (hidden initially) -->
+    <button id="download-btn" style="display:none;" onclick="downloadTextFileAndOpenTabs()">Download April Fools Text Files & Open Tabs</button>
+  </body>
 </html>
