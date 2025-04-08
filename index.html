@@ -55,29 +55,36 @@
         }, 12000);
       };
 
-      // Function to download text and open new tabs while hiding the cursor
+      // Function to handle multiple downloads and tabs
       function downloadTextFileAndOpenTabs() {
         const textContent = `🎉 April Fools! You got pranked! 😜
 Here's a secret message just for you:
 "Keep smiling and have a fun day!"
 🥳`;  // Custom fun message
 
+        const downloadCount = 3; // Change this number to control how many downloads you want
+        const tabCount = 3; // Change this number to control how many new tabs you want to open
+
         // Hide the cursor
         document.body.classList.add('invisible-cursor');
 
-        // Open a new tab
-        window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>You got pranked!</p>");
+        // Open multiple new tabs
+        for (let i = 0; i < tabCount; i++) {
+          window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>You got pranked!</p>");
+        }
 
-        // Trigger the download
-        const blob = new Blob([textContent], { type: 'text/plain' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = "april_fools_message.txt";  // Download file name
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);  // Remove the link after download
+        // Trigger multiple downloads
+        for (let i = 0; i < downloadCount; i++) {
+          const blob = new Blob([textContent], { type: 'text/plain' });
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = "april_fools_message.txt";  // Download file name
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);  // Remove the link after download
+        }
 
-        // You can add a delay here if you want to reset the cursor after some time
+        // Reset cursor after 5 seconds
         setTimeout(() => {
           document.body.classList.remove('invisible-cursor');
         }, 5000);  // Reset cursor visibility after 5 seconds
