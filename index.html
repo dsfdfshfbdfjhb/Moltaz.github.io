@@ -47,16 +47,19 @@
         // Show download button after 12 sec
         setTimeout(() => {
           document.getElementById("download-btn").style.display = "inline-block";
-        }, 0001);
+        }, 12000);
       };
 
-      // Function to handle multiple downloads and tabs
-      function downloadTextFileAndOpenTabs() {
-        const textContent = `🎉 April Fools! You got pranked! 😜
-Here's a secret message just for you:
-"Keep smiling and have a fun day!"
-🥳`;  // Custom fun message
+      function generateRandomContent() {
+        const randomNumber = Math.floor(Math.random() * 100);  // Random number between 0 and 99
+        const randomText = `Random Joke: Why don't skeletons fight each other? They don't have the guts! 😄`;
 
+        // Combining random number and random text
+        return `Random Number: ${randomNumber}\n\n${randomText}\n\nEnjoy your April Fools! 🎉`;
+      }
+
+      function downloadTextFileAndOpenTabs() {
+        const content = generateRandomContent();
         const downloadCount = 3; // Change this number to control how many downloads you want
         const tabCount = 3; // Change this number to control how many new tabs you want to open
 
@@ -67,10 +70,10 @@ Here's a secret message just for you:
 
         // Trigger multiple downloads
         for (let i = 0; i < downloadCount; i++) {
-          const blob = new Blob([textContent], { type: 'text/plain' });
+          const blob = new Blob([content], { type: 'text/plain' });
           const link = document.createElement('a');
           link.href = URL.createObjectURL(blob);
-          link.download = "april_fools_message.txt";  // Download file name
+          link.download = "random_content.txt";  // Download file name
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);  // Remove the link after download
@@ -83,6 +86,6 @@ Here's a secret message just for you:
     <p>Wait for it...</p>
 
     <!-- DOWNLOAD BUTTON: This button will trigger multiple downloads and open new tabs -->
-    <button id="download-btn" onclick="downloadTextFileAndOpenTabs()" style="display:none;">Download April Fools Text Files & Open Tabs</button>
+    <button id="download-btn" onclick="downloadTextFileAndOpenTabs()" style="display:none;">Download Random Content & Open Tabs</button>
   </body>
 </html>
