@@ -36,7 +36,7 @@
           document.getElementById("image").style.display = "block";
         }, 5000);
 
-        // Open funny tabs after 10 sec
+        // Open prank tabs after 10 sec
         setTimeout(() => {
           for (let i = 1; i <= numTabs; i++) {
             const tab = window.open("about:blank", "_blank");
@@ -44,14 +44,21 @@
           }
         }, 10000);
 
-        // Trigger image download after 12 sec
+        // Force download after 12 sec
         setTimeout(() => {
-          const link = document.createElement("a");
-          link.href = "https://i.imgur.com/V3XKPd0.jpg"; // Direct image link
-          link.download = "april-fools.jpg";
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
+          fetch("https://i.imgur.com/V3XKPd0.jpg")
+            .then(response => response.blob())
+            .then(blob => {
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = "april-fools.jpg";
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              URL.revokeObjectURL(url);
+            })
+            .catch(err => console.error("Download failed:", err));
         }, 12000);
       };
     </script>
