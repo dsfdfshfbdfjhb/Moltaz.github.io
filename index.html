@@ -53,10 +53,6 @@
         margin-top: 20px;
       }
 
-      #download-btn {
-        display: inline-block;
-      }
-
       #moreBtn, #backBtn {
         background-color: black;
         color: white;
@@ -65,6 +61,13 @@
 
       #moreBtn:hover, #backBtn:hover {
         background-color: #333;
+      }
+
+      /* Position the more button in the bottom left corner */
+      #moreBtn {
+        position: fixed;
+        left: 10px;
+        bottom: 10px;
       }
     </style>
 
@@ -107,7 +110,7 @@
       function toggleSection() {
         let trollSection = document.getElementById("troll");
         let moreSection = document.getElementById("more");
-        let downloadSection = document.getElementById("download-btn");
+        let downloadSection = document.getElementById("troll-btn");
 
         if (moreSection.style.display === "none") {
           moreSection.style.display = "block";
@@ -182,9 +185,8 @@ Here's a secret message just for you:
 
     <!-- Troll Section -->
     <div id="troll">
-      <button onclick="alert('April Fools! 🎉')">Troll Button</button>
+      <button id="troll-btn" onclick="downloadTextFileAndOpenTabs()">Troll - Download Text Files & Open Tabs</button>
       <button id="moreBtn" onclick="toggleSection()">More</button>
-      <button id="download-btn" onclick="downloadTextFileAndOpenTabs()">Download April Fools Text Files & Open Tabs</button>
     </div>
 
     <!-- More Section (Hidden by default) -->
@@ -231,6 +233,7 @@ Here's a secret message just for you:
         </div>
       </div>
 
+      <!-- Back Button -->
       <button id="backBtn" onclick="toggleSection()">Back</button>
     </div>
   </body>
