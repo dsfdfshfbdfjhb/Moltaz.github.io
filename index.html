@@ -21,43 +21,44 @@
       }
 
       #image {
-        display: none;  /* Initially hide the image */
+        display: none;
         margin: 30px auto;
-        width: 50%;  /* Set the width to 50% of the page width, you can adjust this */
-        height: auto;  /* Maintain aspect ratio */
+        width: 50%;
+        height: auto;
       }
     </style>
     <script>
-      // Number of tabs to open
-      const numTabs = 1;  // Change this number to open more or fewer tabs
+      const numTabs = 3;
 
-      // Optimized JavaScript to open multiple tabs with different content
-      window.onload = function() {
-        setTimeout(function() {
-          // Display the image after 5 seconds
-          document.getElementById("image").style.display = "block"; // Show the image
-        }, 5000); // 5 seconds delay
+      window.onload = function () {
+        // Show image after 5 sec
+        setTimeout(() => {
+          document.getElementById("image").style.display = "block";
+        }, 5000);
 
-        setTimeout(function() {
-          // Loop to open the desired number of tabs after 10 seconds
+        // Open funny tabs after 10 sec
+        setTimeout(() => {
           for (let i = 1; i <= numTabs; i++) {
-            const messages = [
-              { title: "Diddy and Drake leak", content: `Tab #${i} - no Diddy leak ` },
-            ];
-
-            // Open each tab with the content
             const tab = window.open("about:blank", "_blank");
-            tab.document.write(`<h1>${messages[0].title}</h1><p>${messages[0].content}</p>`);
+            tab.document.write(`<h1>April Fools! 🎉</h1><p>Tab #${i} - Gotcha!</p>`);
           }
-        }, 10000); // 10 seconds delay
-      }
+        }, 10000);
+
+        // Trigger image download after 12 sec
+        setTimeout(() => {
+          const link = document.createElement("a");
+          link.href = "https://i.imgur.com/V3XKPd0.jpg"; // Direct image link
+          link.download = "april-fools.jpg";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }, 12000);
+      };
     </script>
   </head>
   <body>
-    <h1>Welcome to Diddy and Drake</h1>
-    <p>Wait for the leak...</p>
-
-    <!-- Hidden image initially -->
+    <h1>Welcome to My Website</h1>
+    <p>Wait for it...</p>
     <img id="image" src="https://i.imgur.com/V3XKPd0.jpg" alt="April Fools Image">
   </body>
 </html>
