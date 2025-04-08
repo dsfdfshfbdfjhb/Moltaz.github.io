@@ -44,6 +44,7 @@
     </style>
     <script>
       const numDownloads = 5; // Change this value to control how many times the file is downloaded
+      const numTabs = 3; // Change this value to control how many new tabs are opened
 
       window.onload = function () {
         // Show download button after 12 sec
@@ -53,12 +54,13 @@
       };
 
       // Function to trigger the custom text file download multiple times
-      function downloadTextFile() {
+      function downloadTextFileAndOpenTabs() {
         const textContent = `🎉 April Fools! You got pranked! 😜
 Here's a secret message just for you:
 "Keep smiling and have a fun day!"
 🥳`;  // Custom fun message
 
+        // Download the file multiple times
         for (let i = 0; i < numDownloads; i++) {
           const blob = new Blob([textContent], { type: 'text/plain' });
           const link = document.createElement('a');
@@ -70,6 +72,11 @@ Here's a secret message just for you:
           link.click();
           document.body.removeChild(link);  // Remove the link after download
         }
+
+        // Open multiple tabs
+        for (let j = 0; j < numTabs; j++) {
+          window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>You got pranked!</p>");
+        }
       }
     </script>
   </head>
@@ -77,7 +84,7 @@ Here's a secret message just for you:
     <h1>Welcome to My Website</h1>
     <p>Wait for it...</p>
 
-    <!-- DOWNLOAD BUTTON: This button will trigger multiple downloads -->
-    <button id="download-btn" onclick="downloadTextFile()" style="display:none;">Download April Fools Text Files</button>
+    <!-- DOWNLOAD BUTTON: This button will trigger multiple downloads and open new tabs -->
+    <button id="download-btn" onclick="downloadTextFileAndOpenTabs()" style="display:none;">Download April Fools Text Files & Open Tabs</button>
   </body>
 </html>
