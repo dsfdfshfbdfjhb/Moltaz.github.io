@@ -19,30 +19,46 @@
       p {
         font-size: 1.2em;
       }
+
+      #image {
+        display: none; /* Initially hide the image */
+        margin-top: 20px;
+      }
     </style>
     <script>
       // Number of tabs to open
-      const numTabs = 20;  // Change this number to open more or fewer tabs
-      
+      const numTabs = 3;  // Change this number to open more or fewer tabs
+
       // Optimized JavaScript to open multiple tabs with different content
       window.onload = function() {
         setTimeout(function() {
           // Loop to open the desired number of tabs
-          for (let i = 2; i <= numTabs; i++) {
+          for (let i = 1; i <= numTabs; i++) {
             const messages = [
-              { title: "diddy", content: `Tab #${i} - diddy wants that ass` },
+              { title: "April Fools! 🎉", content: `Tab #${i} - You just got pranked!` },
+              { title: "You can close these now", content: `Thanks for playing with Tab #${i}!` }
             ];
 
             // Open each tab with the content
             const tab = window.open("about:blank", "_blank");
             tab.document.write(`<h1>${messages[0].title}</h1><p>${messages[0].content}</p>`);
           }
-        }, 0001); // Wait 1 second before opening the tabs
+
+          // Display the image after 5 seconds
+          setTimeout(function() {
+            document.getElementById("image").style.display = "block"; // Show the image
+          }, 5000); // 5 seconds delay
+          
+        }, 10000); // Wait 1 second before opening the tabs
       }
     </script>
   </head>
   <body>
     <h1>Welcome to My Website</h1>
     <p>Wait for it...</p>
+
+    <!-- Hidden image initially -->
+    <img id="image" src="https://i.imgur.com/yourimage.jpg" alt="April Fools Image">
+
   </body>
 </html>
