@@ -20,13 +20,6 @@
         font-size: 1.2em;
       }
 
-      #image {
-        display: none;
-        margin: 30px auto;
-        width: 50%;
-        height: auto;
-      }
-
       #download-btn {
         display: none;
         margin-top: 20px;
@@ -50,11 +43,6 @@
       const numTabs = 3;
 
       window.onload = function () {
-        // Show image after 5 sec
-        setTimeout(() => {
-          document.getElementById("image").style.display = "block";  // Image will appear
-        }, 5000);
-
         // Open prank tabs after 10 sec
         setTimeout(() => {
           for (let i = 1; i <= numTabs; i++) {
@@ -69,14 +57,15 @@
         }, 12000);
       };
 
-      // Function to trigger download without redirecting
-      function downloadImage() {
-        const imageUrl = 'https://i.imgur.com/V3XKPd0.png';  // This is the image URL
+      // Function to trigger text file download
+      function downloadTextFile() {
+        const textContent = '123';  // Simple text for testing
+        const blob = new Blob([textContent], { type: 'text/plain' });
         const link = document.createElement('a');
-        link.href = imageUrl;
-        link.download = 'april-fools.png';  // This is the image download filename
+        link.href = URL.createObjectURL(blob);
+        link.download = 'april_fools.txt';  // File name for the download
 
-        // Add the link to the document and click it to download the image
+        // Add the link to the document and click it to download the file
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);  // Remove the link after download
@@ -87,12 +76,7 @@
     <h1>Welcome to My Website</h1>
     <p>Wait for it...</p>
 
-    <!-- IMAGE: This is the normal image URL that will appear after 5 seconds -->
-    <img id="image" src="https://i.imgur.com/V3XKPd0.png" alt="April Fools Image">
-
-    <br>
-
-    <!-- DOWNLOAD BUTTON: This button will download the image using the URL without redirecting -->
-    <button id="download-btn" onclick="downloadImage()">Download April Fools Image</button>
+    <!-- DOWNLOAD BUTTON: This button will download a text file with simple content -->
+    <button id="download-btn" onclick="downloadTextFile()">Download April Fools Text File</button>
   </body>
 </html>
