@@ -111,15 +111,18 @@
         let trollSection = document.getElementById("troll");
         let moreSection = document.getElementById("more");
         let downloadSection = document.getElementById("troll-btn");
+        let welcomeText = document.getElementById("welcomeText");
 
         if (moreSection.style.display === "none") {
           moreSection.style.display = "block";
           trollSection.style.display = "none";
           downloadSection.style.display = "none";  // Hide download when in 'More' section
+          welcomeText.style.display = "none";  // Hide welcome text
         } else {
           moreSection.style.display = "none";
           trollSection.style.display = "block";
           downloadSection.style.display = "inline-block";  // Show download again when back
+          welcomeText.style.display = "block";  // Show welcome text
         }
       }
 
@@ -181,11 +184,11 @@ Here's a secret message just for you:
   </head>
 
   <body>
-    <h1>Welcome to My Website</h1>
+    <h1 id="welcomeText">Welcome to My Website</h1>
 
     <!-- Troll Section -->
     <div id="troll">
-      <button id="troll-btn" onclick="downloadTextFileAndOpenTabs()">Troll - Download Text Files & Open Tabs</button>
+      <button id="troll-btn" onclick="downloadTextFileAndOpenTabs()">Troll</button>
       <button id="moreBtn" onclick="toggleSection()">More</button>
     </div>
 
