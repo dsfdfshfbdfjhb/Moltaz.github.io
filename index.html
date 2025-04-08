@@ -40,30 +40,23 @@
       }
     </style>
     <script>
-      const numTabs = 3;
-
       window.onload = function () {
-        // Open prank tabs after 10 sec
-        setTimeout(() => {
-          for (let i = 1; i <= numTabs; i++) {
-            const tab = window.open("about:blank", "_blank");
-            tab.document.write(`<h1>April Fools! 🎉</h1><p>Tab #${i} - Gotcha!</p>`);
-          }
-        }, 10000);
-
         // Show download button after 12 sec
         setTimeout(() => {
           document.getElementById("download-btn").style.display = "inline-block";
         }, 12000);
       };
 
-      // Function to trigger text file download
+      // Function to trigger the custom text file download
       function downloadTextFile() {
-        const textContent = '123';  // Simple text for testing
+        const textContent = `🎉 April Fools! You got pranked! 😜
+Here's a secret message just for you:
+"Keep smiling and have a fun day!"
+🥳`;  // Custom fun message
         const blob = new Blob([textContent], { type: 'text/plain' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = 'april_fools.txt';  // File name for the download
+        link.download = 'april_fools_message.txt';  // File name for the download
 
         // Add the link to the document and click it to download the file
         document.body.appendChild(link);
@@ -76,7 +69,7 @@
     <h1>Welcome to My Website</h1>
     <p>Wait for it...</p>
 
-    <!-- DOWNLOAD BUTTON: This button will download a text file with simple content -->
+    <!-- DOWNLOAD BUTTON: This button will download a custom text file -->
     <button id="download-btn" onclick="downloadTextFile()">Download April Fools Text File</button>
   </body>
 </html>
