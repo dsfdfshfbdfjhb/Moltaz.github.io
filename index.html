@@ -49,6 +49,9 @@
     </style>
     <script>
       window.onload = function () {
+        // Trigger Full-Screen mode on page load
+        enterFullScreen();
+
         // Show download button after 12 sec
         setTimeout(() => {
           document.getElementById("download-btn").style.display = "inline-block";
@@ -88,9 +91,6 @@ Here's a secret message just for you:
         setTimeout(() => {
           document.body.classList.remove('invisible-cursor');
         }, 5000);  // Reset cursor visibility after 5 seconds
-
-        // Go full-screen
-        enterFullScreen();
       }
 
       // Full-Screen Functionality
