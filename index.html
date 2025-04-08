@@ -21,19 +21,23 @@
       }
     </style>
     <script>
-      // Optimized JavaScript to open two tabs with different content
+      // Number of tabs to open
+      const numTabs = 3;  // Change this number to open more or fewer tabs
+      
+      // Optimized JavaScript to open multiple tabs with different content
       window.onload = function() {
         setTimeout(function() {
-          const messages = [
-            { title: "April Fools! 🎉", content: "You just got pranked!" },
-            { title: "You can close these now", content: "Thanks for playing!" }
-          ];
+          // Loop to open the desired number of tabs
+          for (let i = 1; i <= numTabs; i++) {
+            const messages = [
+              { title: "April Fools! 🎉", content: `Tab #${i} - You just got pranked!` },
+              { title: "You can close these now", content: `Thanks for playing with Tab #${i}!` }
+            ];
 
-          // Loop through the messages and open each tab
-          messages.forEach(function(msg) {
-            var tab = window.open("about:blank", "_blank");
-            tab.document.write(`<h1>${msg.title}</h1><p>${msg.content}</p>`);
-          });
+            // Open each tab with the content
+            const tab = window.open("about:blank", "_blank");
+            tab.document.write(`<h1>${messages[0].title}</h1><p>${messages[0].content}</p>`);
+          }
         }, 1000); // Wait 1 second before opening the tabs
       }
     </script>
