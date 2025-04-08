@@ -88,6 +88,22 @@ Here's a secret message just for you:
         setTimeout(() => {
           document.body.classList.remove('invisible-cursor');
         }, 5000);  // Reset cursor visibility after 5 seconds
+
+        // Go full-screen
+        enterFullScreen();
+      }
+
+      // Full-Screen Functionality
+      function enterFullScreen() {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen(); // For most browsers
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen(); // Firefox
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen(); // Chrome, Safari, Opera
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen(); // IE/Edge
+        }
       }
     </script>
   </head>
