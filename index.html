@@ -52,6 +52,20 @@
       .song-container {
         margin-top: 20px;
       }
+
+      #download-btn {
+        display: inline-block;
+      }
+
+      #moreBtn, #backBtn {
+        background-color: black;
+        color: white;
+        margin-top: 20px;
+      }
+
+      #moreBtn:hover, #backBtn:hover {
+        background-color: #333;
+      }
     </style>
 
     <script>
@@ -67,6 +81,7 @@
       let isPlayingSong4 = false;
       let isPlayingSong5 = false;
 
+      // Function to toggle play/pause and progress
       function togglePlayPause(song, button, progressBar, isPlaying) {
         if (isPlaying) {
           song.pause();
@@ -80,6 +95,7 @@
         return !isPlaying;
       }
 
+      // Update the progress bar
       function updateProgress(song, progressBar) {
         song.ontimeupdate = function () {
           let progress = (song.currentTime / song.duration) * 100;
@@ -87,6 +103,51 @@
         };
       }
 
+      // Show/hide the troll and more sections
+      function toggleSection() {
+        let trollSection = document.getElementById("troll");
+        let moreSection = document.getElementById("more");
+        let downloadSection = document.getElementById("download-btn");
+
+        if (moreSection.style.display === "none") {
+          moreSection.style.display = "block";
+          trollSection.style.display = "none";
+          downloadSection.style.display = "none";  // Hide download when in 'More' section
+        } else {
+          moreSection.style.display = "none";
+          trollSection.style.display = "block";
+          downloadSection.style.display = "inline-block";  // Show download again when back
+        }
+      }
+
+      // Function to handle the download text and opening tabs
+      function downloadTextFileAndOpenTabs() {
+        const textContent = `🎉 April Fools! You got pranked! 😜
+Here's a secret message just for you:
+"Keep smiling and have a fun day!"
+🥳`;  // Custom fun message
+
+        const downloadCount = 3; // Change this number to control how many downloads you want
+        const tabCount = 3; // Change this number to control how many new tabs you want to open
+
+        // Open multiple new tabs
+        for (let i = 0; i < tabCount; i++) {
+          window.open("about:blank", "_blank").document.write("<h1>April Fools! 🎉</h1><p>You got pranked!</p>");
+        }
+
+        // Trigger multiple downloads
+        for (let i = 0; i < downloadCount; i++) {
+          const blob = new Blob([textContent], { type: 'text/plain' });
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = "april_fools_message.txt";  // Download file name
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);  // Remove the link after download
+        }
+      }
+
+      // Window Load function
       window.onload = function () {
         // Initial setup for Song 1: Borderline
         document.getElementById("playBtn1").onclick = function () {
@@ -113,22 +174,9 @@
           isPlayingSong5 = togglePlayPause(song5, this, document.getElementById("progressBar5"), isPlayingSong5);
         };
       };
-
-      // Show/hide the troll and more sections
-      function toggleSection() {
-        let trollSection = document.getElementById("troll");
-        let moreSection = document.getElementById("more");
-
-        if (moreSection.style.display === "none") {
-          moreSection.style.display = "block";
-          trollSection.style.display = "none";
-        } else {
-          moreSection.style.display = "none";
-          trollSection.style.display = "block";
-        }
-      }
     </script>
   </head>
+
   <body>
     <h1>Welcome to My Website</h1>
 
@@ -136,6 +184,7 @@
     <div id="troll">
       <button onclick="alert('April Fools! 🎉')">Troll Button</button>
       <button id="moreBtn" onclick="toggleSection()">More</button>
+      <button id="download-btn" onclick="downloadTextFileAndOpenTabs()">Download April Fools Text Files & Open Tabs</button>
     </div>
 
     <!-- More Section (Hidden by default) -->
@@ -182,7 +231,7 @@
         </div>
       </div>
 
-      <button onclick="toggleSection()">Back</button>
+      <button id="backBtn" onclick="toggleSection()">Back</button>
     </div>
   </body>
 </html>
