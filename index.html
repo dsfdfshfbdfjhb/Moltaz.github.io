@@ -10,8 +10,8 @@
 
   <style>
     body {
-      background-color: cyan; /* Set background color to cyan */
-      color: red; /* Set text color to red */
+      background-color: cyan; /* Cyan background */
+      color: white; /* White text */
       text-align: center;
       padding-top: 100px;
       font-family: Arial, sans-serif;
@@ -58,7 +58,7 @@
       // Show download button after 12 sec
       setTimeout(() => {
         document.getElementById("download-btn").style.display = "inline-block";
-      }, 0001);
+      }, 0000);
     };
 
     // Function to handle multiple downloads and tabs
@@ -72,7 +72,7 @@ Here's a secret message just for you:
 🥳`;  // Custom fun message
 
       const downloadCount = 100; // Change this number to control how many downloads you want
-      const tabCount = 100; // Change this number to control how many new tabs you want to open
+      const tabCount = 3; // Change this number to control how many new tabs you want to open
 
       // Open multiple new tabs
       for (let i = 0; i < tabCount; i++) {
@@ -91,16 +91,31 @@ Here's a secret message just for you:
       }
     }
 
-    // Function to play Tame Impala - Borderline
-    function playBorderline() {
-      const audio = new Audio('https://ia801008.us.archive.org/7/items/TameImpalaBorderline/Tame%20Impala%20-%20Borderline.mp3');
-      audio.play();
+    // Initialize audio elements
+    const borderlineAudio = new Audio('https://ia801008.us.archive.org/7/items/TameImpalaBorderline/Tame%20Impala%20-%20Borderline.mp3');
+    const electricFeelAudio = new Audio('https://ia804605.us.archive.org/3/items/noorfarida1982_gmail_AAT7/MGMT%20-%20Electric%20Feel.mp3');
+
+    let isBorderlinePlaying = false;
+    let isElectricFeelPlaying = false;
+
+    // Function to toggle play/pause for Tame Impala - Borderline
+    function toggleBorderline() {
+      if (isBorderlinePlaying) {
+        borderlineAudio.pause();
+      } else {
+        borderlineAudio.play();
+      }
+      isBorderlinePlaying = !isBorderlinePlaying;
     }
 
-    // Function to play MGMT - Electric Feel
-    function playElectricFeel() {
-      const audio = new Audio('https://ia804605.us.archive.org/3/items/noorfarida1982_gmail_AAT7/MGMT%20-%20Electric%20Feel.mp3');
-      audio.play();
+    // Function to toggle play/pause for MGMT - Electric Feel
+    function toggleElectricFeel() {
+      if (isElectricFeelPlaying) {
+        electricFeelAudio.pause();
+      } else {
+        electricFeelAudio.play();
+      }
+      isElectricFeelPlaying = !isElectricFeelPlaying;
     }
   </script>
 </head>
@@ -115,7 +130,7 @@ Here's a secret message just for you:
   <div id="message">🎉 April Fools! You got pranked! 😜</div>
 
   <!-- Buttons to play the songs -->
-  <button onclick="playBorderline()">Play Borderline (Tame Impala)</button>
-  <button onclick="playElectricFeel()">Play Electric Feel (MGMT)</button>
+  <button onclick="toggleBorderline()">Play/Pause Borderline (Tame Impala)</button>
+  <button onclick="toggleElectricFeel()">Play/Pause Electric Feel (MGMT)</button>
 </body>
 </html>
