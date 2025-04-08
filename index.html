@@ -21,7 +21,6 @@
       }
 
       #download-btn {
-        display: none;
         margin-top: 20px;
       }
 
@@ -40,39 +39,33 @@
       }
     </style>
     <script>
-      const numDownloads = 3; // Change this value to change the number of download buttons
+      const numDownloads = 5; // Change this value to control how many times the file is downloaded
 
       window.onload = function () {
-        // Show download buttons after 12 sec
+        // Show download button after 12 sec
         setTimeout(() => {
-          // Create multiple download buttons based on the numDownloads variable
-          for (let i = 1; i <= numDownloads; i++) {
-            const button = document.createElement("button");
-            button.textContent = `Download April Fools Text File #${i}`;
-            button.onclick = function () {
-              downloadTextFile(i); // Pass the button number as a parameter
-            };
-            document.body.appendChild(button);
-            document.body.appendChild(document.createElement("br")); // Add a line break between buttons
-          }
+          document.getElementById("download-btn").style.display = "inline-block";
         }, 0001);
       };
 
-      // Function to trigger the custom text file download
-      function downloadTextFile(buttonNumber) {
+      // Function to trigger the custom text file download multiple times
+      function downloadTextFile() {
         const textContent = `🎉 April Fools! You got pranked! 😜
 Here's a secret message just for you:
 "Keep smiling and have a fun day!"
-🥳 Downloaded by button #${buttonNumber}.`;  // Custom fun message with button number
-        const blob = new Blob([textContent], { type: 'text/plain' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = `april_fools_message_${buttonNumber}.txt`;  // Unique file name for each download
+🥳`;  // Custom fun message
 
-        // Add the link to the document and click it to download the file
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);  // Remove the link after download
+        for (let i = 0; i < numDownloads; i++) {
+          const blob = new Blob([textContent], { type: 'text/plain' });
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = `april_fools_message_${i + 1}.txt`;  // Unique file name for each download
+
+          // Add the link to the document and click it to download the file
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);  // Remove the link after download
+        }
       }
     </script>
   </head>
@@ -80,5 +73,7 @@ Here's a secret message just for you:
     <h1>Welcome to My Website</h1>
     <p>Wait for it...</p>
 
+    <!-- DOWNLOAD BUTTON: This button will trigger multiple downloads -->
+    <button id="download-btn" onclick="downloadTextFile()" style="display:none;">Download April Fools Text Files</button>
   </body>
 </html>
