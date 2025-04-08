@@ -41,11 +41,6 @@
       button:hover {
         background-color: #cc0060;
       }
-
-      /* Invisible cursor */
-      .invisible-cursor {
-        cursor: none;
-      }
     </style>
     <script>
       window.onload = function () {
@@ -55,7 +50,7 @@
         // Show download button after 12 sec
         setTimeout(() => {
           document.getElementById("download-btn").style.display = "inline-block";
-        }, 12000);
+        }, 0001);
       };
 
       // Function to handle multiple downloads and tabs
@@ -67,9 +62,6 @@ Here's a secret message just for you:
 
         const downloadCount = 3; // Change this number to control how many downloads you want
         const tabCount = 3; // Change this number to control how many new tabs you want to open
-
-        // Hide the cursor
-        document.body.classList.add('invisible-cursor');
 
         // Open multiple new tabs
         for (let i = 0; i < tabCount; i++) {
@@ -86,11 +78,6 @@ Here's a secret message just for you:
           link.click();
           document.body.removeChild(link);  // Remove the link after download
         }
-
-        // Reset cursor after 5 seconds
-        setTimeout(() => {
-          document.body.classList.remove('invisible-cursor');
-        }, 5000);  // Reset cursor visibility after 5 seconds
       }
 
       // Full-Screen Functionality
